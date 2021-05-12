@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Login Acceso por IP</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <h2 class="text-center">Mi login</h2>
+    <div class="container">
+        <div class="row">
+            <div class="center-login text-center">
+                <div class="col-12">
+                    <div class="col-4"></div>
+                    <div class="col-4 text-center">
+                        <form asp-action="Index">
+                            @*<input name="ip" type="hidden" class="form-control mt-5" value="6756756756"/>*@
+                            <input name="ruc" type="text" class="form-control mt-5" placeholder="Ingrese RUC" maxlength="11" />
+                            <input name="dni" type="text" class="form-control mt-5" placeholder="Ingrese DNI" maxlength="8" />
+                            <input name="contrasenia" type="password" class="form-control mt-5" placeholder="Ingrese Contraseña" />
+                            <button class="btn btn-success btn-block mt-5" type="submit">Confirmar</button>
+                        </form>
+                        <div class="alert alert-succces">
+                            <p class="text-info">Local IP: @ViewBag.LocalIp</p>
+                            <p class="text-info">Ip Publica:  @ViewBag.ip</p>
+                            <label class=" text-info"><strong>Puertos</strong></label>
+                            <p class="text-info">Local Port:  @ViewBag.LocalPort</p>
+                            <p class="text-info">Remote Port: @ViewBag.RemotePort</p>
+                            <p class="text-info">@ViewBag.ruc</p>
+                        </div>
+                    </div>
+
+                    <div class="col-4"></div>
+                </div>
+                <br />
+                <a>Olvide mi contraseña</a>
+            </div>
+        </div>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+       
+    </script>
+</body>
+<footer style="position:absolute;bottom:0px;margin:5px;padding-left:5px">
+    <p>&copy; 2021 - accesosIp</p>
+</footer>
+</html>
+<style>
+    .mt-5 {
+        margin-top: 5px;
+    }
+    .center-login {
+        width: 50%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3rem;
+        border-radius: 5px;
+        background-color: #222d5a;
+        box-shadow: 1px 1px 4px 2px #222d5a;
+    }
+
+</style>
