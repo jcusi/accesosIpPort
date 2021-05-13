@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0OK9M0YJd4FMx0v7yW8KLyP+ijN0GDGnM8HGcxrvREpdOlvXV18pYgSicEPctAkiGTtwph4wqTGXyAYMeN4FAg==",
+  "dgSpecHash": "wwB1FZYNj9+VZWZVG/fJJY23PJU4yAkpyzG2IF5JJokDUI3IYU/EpTLfHEX3MJuQJq7/bAVjTkFVzwmdHU/TfQ==",
   "success": true,
-  "projectFilePath": "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\accesosIp.csproj",
+  "projectFilePath": "D:\\Taller\\accesosIp\\accesosIpPort\\accesosIp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jcusi\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\jcusi\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",

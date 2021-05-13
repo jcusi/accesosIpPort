@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using accesosIp.Data;
+using accesosIp.DBContexts;
+using accesosIp.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Session;
 
 namespace accesosIp
 {
@@ -23,7 +28,15 @@ namespace accesosIp
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
+
+
+            services.AddScoped<Repository>();
+            services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString"),
+               sqlServerOptionsAction: sqlOtions => {
+                   sqlOtions.EnableRetryOnFailure();
+               }));
+
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -32,7 +45,13 @@ namespace accesosIp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "Web-Cliente";
+                options.IdleTimeout = TimeSpan.FromHours(1);
+                options.Cookie.HttpOnly = true;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -46,11 +65,15 @@ namespace accesosIp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
+            app.UseHttpContextItemsMiddleware();
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

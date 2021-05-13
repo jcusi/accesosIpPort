@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\accesosIp.csproj": {}
+    "D:\\Taller\\accesosIp\\accesosIpPort\\accesosIp.csproj": {}
   },
   "projects": {
-    "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\accesosIp.csproj": {
+    "D:\\Taller\\accesosIp\\accesosIpPort\\accesosIp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\accesosIp.csproj",
+        "projectUniqueName": "D:\\Taller\\accesosIp\\accesosIpPort\\accesosIp.csproj",
         "projectName": "accesosIp",
-        "projectPath": "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\accesosIp.csproj",
+        "projectPath": "D:\\Taller\\accesosIp\\accesosIpPort\\accesosIp.csproj",
         "packagesPath": "C:\\Users\\jcusi\\.nuget\\packages\\",
-        "outputPath": "D:\\Taller\\accesosIp\\Accesos-ip-port-MVC\\obj\\",
+        "outputPath": "D:\\Taller\\accesosIp\\accesosIpPort\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jcusi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,6 +48,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.2, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

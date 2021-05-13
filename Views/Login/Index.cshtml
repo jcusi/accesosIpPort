@@ -33,20 +33,33 @@
                             <input name="contrasenia" type="password" class="form-control mt-5" placeholder="Ingrese Contraseña" />
                             <button class="btn btn-success btn-block mt-5" type="submit">Confirmar</button>
                         </form>
-                        <div class="alert alert-succces">
-                            <p class="text-info">Local IP: @ViewBag.LocalIp</p>
-                            <p class="text-info">Ip Publica:  @ViewBag.ip</p>
-                            <label class=" text-info"><strong>Puertos</strong></label>
-                            <p class="text-info">Local Port:  @ViewBag.LocalPort</p>
-                            <p class="text-info">Remote Port: @ViewBag.RemotePort</p>
-                            <p class="text-info">@ViewBag.ruc</p>
-                        </div>
+                        @{
+                            if (@ViewBag.mensaje == null)
+                            {
+                                <div class="alert alert-succces">
+                                    @*<p class="text-info">ip pc: @ViewBag.ippc</p>*@
+                                    @*<p class="text-info">Namepc: @ViewBag.namehost</p>*@
+                                    <p class="text-info">Id: @ViewBag.id</p>
+                                    <p class="text-info">Local IP: @ViewBag.LocalIp</p>
+                                    <p class="text-info">Ip Publica:  @ViewBag.ip</p>
+                                    <label class=" text-info"><strong>Puertos</strong></label>
+                                    <p class="text-info">Local Port:  @ViewBag.LocalPort</p>
+                                    <p class="text-info">Remote Port: @ViewBag.RemotePort</p>
+                                    <p class="text-info">@ViewBag.ruc</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger mt-5">
+                                    @ViewBag.mensaje
+                                </div>
+                            }
+                        }
                     </div>
-
                     <div class="col-4"></div>
                 </div>
                 <br />
-                <a>Olvide mi contraseña</a>
+                <a class="cursor-pointer">Olvide mi contraseña</a>
             </div>
         </div>
     </div>
@@ -92,5 +105,7 @@
         background-color: #222d5a;
         box-shadow: 1px 1px 4px 2px #222d5a;
     }
-
+    .cursor-pointer{
+        cursor:pointer
+    }
 </style>
