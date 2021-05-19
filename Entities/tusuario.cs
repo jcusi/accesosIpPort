@@ -11,7 +11,7 @@ namespace accesosIp.Entities
     public class tusuario
     {
         [Key]
-        public Guid sIdUsuario { get; set; }
+        public int sIdUsuario { get; set; }
         public string  sRuc { get; set; }
         public string sDni { get; set; }
         public string sNombre { get; set; }

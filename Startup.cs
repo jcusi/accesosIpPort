@@ -14,13 +14,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
+using accesosIp.Hubs;
+using accesosIp.Services;
 
 namespace accesosIp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IServiceProvider serviceProvider;
+        public Startup(IConfiguration configuration,IServiceProvider serviceProvider)
         {
+            this.serviceProvider = serviceProvider;
             Configuration = configuration;
         }
 
@@ -29,21 +33,16 @@ namespace accesosIp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             services.AddScoped<Repository>();
+
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString"),
                sqlServerOptionsAction: sqlOtions => {
                    sqlOtions.EnableRetryOnFailure();
                }));
 
+            services.AddHttpContextAccessor();
+
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
@@ -52,11 +51,25 @@ namespace accesosIp
                 options.IdleTimeout = TimeSpan.FromHours(1);
                 options.Cookie.HttpOnly = true;
             });
+            services.Configure<CookiePolicyOptions>(options => {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddScoped<IDatabaseChangeNotificationService, SqlDependencyService>();
+            services.AddSignalR();
+            services.AddAntiforgery(options =>
+            {
+                options.FormFieldName = "AntiforgeryFieldname";
+                options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+                options.SuppressXFrameOptionsHeader = false;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            IDatabaseChangeNotificationService databaseChangeNotificationService)
         {
             if (env.IsDevelopment())
             {
@@ -68,18 +81,26 @@ namespace accesosIp
                 app.UseHsts();
             }
 
-            
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
             app.UseHttpContextItemsMiddleware();
             app.UseStatusCodePagesWithReExecute("/error/{0}");
+
+            app.UseSignalR(x =>
+            {
+                x.MapHub<ChatHub>("/SessionHub");
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Login}/{action=Index}/{id?}");
             });
+
+            databaseChangeNotificationService.Config(-1);
         }
     }
 }

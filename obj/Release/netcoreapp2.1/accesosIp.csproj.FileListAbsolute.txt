@@ -72,3 +72,6 @@ D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\accesosIp.dll
 D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\accesosIp.pdb
 D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\accesosIp.genruntimeconfig.cache
 D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\accesosIp.csproj.CopyComplete
+D:\Taller\accesosIp\accesosIpPort\bin\Release\netcoreapp2.1\libman.json
+D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\Razor\Views\CloseConection\Index.cshtml.g.cs
+D:\Taller\accesosIp\accesosIpPort\obj\Release\netcoreapp2.1\Razor\Views\Login\validarAcceso.cshtml.g.cs

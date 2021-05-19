@@ -18,13 +18,17 @@ namespace accesosIp.DBContexts
         {
             modelBuilder.Entity<tAcceso>().ToTable("tAcceso");
             modelBuilder.Entity<tusuario>().ToTable("tusuario");
-          
         }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    var configuracion = ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
         //    base.OnConfiguring(optionsBuilder);
         //    optionsBuilder.UseSqlServer(configuracion.GetSection("ConnectionStrings")["DefaultConnection"]);
+        //}
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
         //}
 
         public virtual void Save()

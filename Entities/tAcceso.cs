@@ -11,13 +11,22 @@ namespace accesosIp.Entities
     public class tAcceso
     {
         [Key]
-        public Guid sIdAcceso { get; set; }
-        public Guid sIdUsuario { get; set; }
+        [Column("sIdAcceso")]
+        public int sIdAcceso { get; set; }
+        [ForeignKey("sIdUsuario")]
+        [Column("sIdUsuario")]
+        public int sIdUsuario { get; set; }
+        [Column("sIp")]
         public string sIp { get; set; }
+        [Column("sPort")]
         public string sPort { set; get; }
-        public string skeysession { set; get; }
+        [Column("sNavegador")]
+        public string sNavegador { set; get; }
+        [Column("dtFechaCreacion")]
         public DateTime dtFechaCreacion { get; set; }
+        [Column("dtFechaExpiracion")]
         public DateTime dtFechaExpiracion { get; set; }
+        [Column("nSession")]
         public int nSession { get; set; }
     }
 }

@@ -10,7 +10,9 @@ namespace accesosIp.Middleware
     public class HttpContextItemsMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly string usuario;
         public static readonly object HttpContextItemsMiddlewareKey = new Object();
+
         public HttpContextItemsMiddleware(RequestDelegate next)
         {
             _next = next;

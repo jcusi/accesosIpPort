@@ -45,6 +45,12 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        <div class="row">
+            <div class="alert alert-danger" id="js-div-alert">
+
+            </div>
+
+        </div>
         @RenderBody()
         <hr />
 
@@ -69,6 +75,9 @@
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/ajaxjson.js"></script>
+        <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/signalr/js-hub.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

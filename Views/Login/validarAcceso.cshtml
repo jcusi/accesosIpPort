@@ -1,0 +1,39 @@
+﻿@{
+        Layout = null;
+}
+    <!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] Login Acceso por IP</title>
+
+        <environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>
+        <environment exclude="Development">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>
+    </head>
+    <body>
+        <div class="row col-12 text-center">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div>
+                    <p>Tiene una Sesión abierta en otro navegador, Desea cambiarlo aquí</p>
+                    <a asp-action="actualizarSesion" asp-controller="Login" class="btn btn-success js-redirecionar">Abrir Aquí</a>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        @*<script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/ajaxjson.js"></script>
+        <script src="~/js/validar/validar.js"></script>*@
+    </body>
+<footer style="position:absolute;bottom:0px;margin:5px;padding-left:5px">
+    <p>&copy; 2021 - accesosIp</p>
+</footer>
+</html>
