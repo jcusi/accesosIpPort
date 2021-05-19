@@ -74,3 +74,6 @@ D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\accesosIp.dll
 D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\accesosIp.pdb
 D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\accesosIp.genruntimeconfig.cache
 D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\accesosIp.csproj.CopyComplete
+D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\accesosIp.csprojAssemblyReference.cache
+D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\Razor\Views\Recuperar\Index.cshtml.g.cs
+D:\Taller\accesosIp\accesosIpPort\obj\Debug\netcoreapp2.1\Razor\Views\Recuperar\ValidandoCodigo.cshtml.g.cs

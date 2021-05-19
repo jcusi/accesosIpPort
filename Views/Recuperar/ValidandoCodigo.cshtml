@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Login Acceso por IP</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Login-style.css" rel="stylesheet" />
+</head>
+<body>
+    <h2 class="text-center">Recuperar Cuenta</h2>
+    <div class="container">
+        <div class="row">
+            <div class="center-login text-center">
+                <div class="col-12">
+                    <div class="col-4"></div>
+                    <div class="col-4 text-center">
+                        <form asp-action="Index">
+                            <h4 style="color:white">Ingrese el Código enviado a su @ViewBag.tipo</h4>
+                             
+
+                            <input name="ingrese_codigo" type="text" class="form-control" placeholder="Ingrese Codigo" maxlength="255" />
+                            <button class="btn btn-success btn-block mt-5" type="submit">Enviar</button>
+                            @*</div>*@
+                        </form>
+                        @{
+                            if (@ViewBag.mensaje == null)
+                            {
+                                <div class="alert alert-succces">
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger mt-5">
+                                    @ViewBag.mensaje
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+                <br />
+                <a asp-controller="Recuperar" asp-action="Index" class="cursor-pointer">Olvide mi contraseña</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+<footer style="position:absolute;bottom:0px;margin:5px;padding-left:5px">
+    <p>&copy; 2021 - accesosIp</p>
+</footer>

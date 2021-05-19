@@ -22,7 +22,7 @@ namespace accesosIp.helper
             CookieOptions cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddDays(1);
             cookieOptions.SameSite = SameSiteMode.None;
-            cookieOptions.Secure = true;
+            cookieOptions.Secure = false;
             cookieOptions.IsEssential = true;
             response.Cookies.Append(SessionValor.SessionKeyAcceso, keyAcceso, cookieOptions);
             response.Cookies.Append(SessionValor.SessionKeyPersona, keyPersona, cookieOptions);
@@ -123,7 +123,7 @@ namespace accesosIp.helper
         }
         private static void crear_archivo(string texto, string ruta)
         {
-            string rutaCompleta = ruta+"_Error_"+ Convert.ToDateTime(DateTime.Now).ToString("yyMMdd_Hmmss_zzz")+".txt";
+            string rutaCompleta = ruta+"_Error_"+ Convert.ToDateTime(DateTime.Now).ToString("yyMMdd_Hmmss")+".txt";
             using (StreamWriter mylogs = File.AppendText(rutaCompleta))         //se crea el archivo
             {
 

@@ -37,19 +37,19 @@ namespace accesosIp.Controllers
         {
                 int valorEntero = -1;
                 int _acceso = int.TryParse(_helper.DevolverSession(), out valorEntero) == true ? Convert.ToInt32(_helper.DevolverSession()) : -1;
-                string _port = _helper.DevolverPort();
+                string _port = _helper.DevolverPort().Trim();
                 var acceso = _context.Acceso.Where(x => x.sIdAcceso == _acceso &&
                 x.nSession == 1 &&
                 x.dtFechaExpiracion > DateTime.Now &&
                 x.sPort == _port &&
-                x.sIp == _accesor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString());
+                x.sIp == _accesor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString().Trim());
                 if (acceso.Any())
                 {
                     return View();
                 }
                 else
                 {
-                Helper.CrearLog("accesor: "+_acceso+", _port: "+_port+", ip:"+ _accesor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString());
+                Helper.CrearLog(" Error en los valores [HomeController Index] acceso: "+_acceso+", _port: "+_port+", ip:"+ _accesor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString());
                 ViewBag.mensaje = "Comuniquese con soporte";
                     return RedirectToAction("Index", "Login");
                 }
@@ -99,7 +99,7 @@ namespace accesosIp.Controllers
             return View("Views/CloseConection/Index.cshtml");
         }
 
-        [AuthorizationFilter]
+        
         public IActionResult CerrarSesion()
         {
             string idAcceso = "";

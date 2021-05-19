@@ -45,15 +45,17 @@ namespace accesosIp
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddDistributedMemoryCache();
+
             services.AddSession(options =>
             {
-                options.Cookie.Name = "Web-Cliente";
-                options.IdleTimeout = TimeSpan.FromHours(1);
+                options.IdleTimeout = TimeSpan.FromDays(1);
                 options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
+
             services.Configure<CookiePolicyOptions>(options => {
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
             services.AddScoped<IDatabaseChangeNotificationService, SqlDependencyService>();
             services.AddSignalR();

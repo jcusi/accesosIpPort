@@ -18,9 +18,10 @@ namespace accesosIp.Filtros
         {
             //!filtroContext.HttpContext.Session.TryGetValue(SessionValor.SessionKeyPersona,out byte[] val) ||
 
-            if (  filtroContext.HttpContext.Session == null || 
+            if (  filtroContext.HttpContext.Session == null ||
                  filtroContext.HttpContext.Request.Cookies[SessionValor.SessionKeyAcceso] == null ||
-                 filtroContext.HttpContext.Request.Cookies[SessionValor.SessionKeyPersona] == null)
+                 filtroContext.HttpContext.Request.Cookies[SessionValor.SessionKeyPersona] == null
+                 )
                {
 
                 helper.Helper.CrearLog("valores nulos");
@@ -32,38 +33,8 @@ namespace accesosIp.Filtros
                     action = "Index"
                 }));
             }
-            //else
-            //{
-            //    bool boolValidar = validarAcceso(Convert.ToInt32(helper.Encriptacion.Desencrip(filtroContext.HttpContext.Request.Cookies[SessionValor.SessionKeyPersona])),
-            //           Convert.ToInt32(helper.Encriptacion.Desencrip(filtroContext.HttpContext.Request.Cookies[SessionValor.SessionKeyPersona])));
-            //    if (boolValidar == false)
-            //    {
-            //        filtroContext.Result =
-            //  new RedirectToRouteResult(new RouteValueDictionary(new
-            //  {
-            //      controller = "Login",
-            //      action = "Index"
-            //  }));
-            //    }
-            //}
-
+             
             base.OnActionExecuted(filtroContext);
         }
-
-        //public bool validarAcceso(int idusuario, int idAcceso)
-        //{
-        //   // Tuple<int, string> tuple = new Tuple<int, string>(-1, "");
-        //   // tuple = _repository.sesionActiva_validar(idusuario, idAcceso);
-
-        //    if (tuple.Item1 == 1)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-
-        //}
     }
 }

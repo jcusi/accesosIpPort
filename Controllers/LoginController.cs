@@ -40,7 +40,7 @@ namespace accesosIp.Controllers
         {
             return View();
         }
-
+        [AuthorizationFilter]
         public IActionResult Validar()
         {
             return View("Views/Login/validarAcceso.cshtml");
@@ -121,9 +121,9 @@ namespace accesosIp.Controllers
                             acceso.nSession = 1; //sesion iniciada
                             _context.Acceso.Add(acceso);
                             _context.Save();
-                            HttpContext.Session.Set(SessionValor.SessionKeyPersona,Encriptacion.Encriptar(user.sIdUsuario.ToString()));
+                            HttpContext.Session.Set(SessionValor.SessionKeyPersona,user.sIdUsuario.ToString());
                             HttpContext.Session.Set(SessionValor.SessionKeyAcceso, acceso.sIdAcceso);
-                            
+                           // HttpContext.Session.Set(SessionValor.SessionPort, tuple.Item3);
                             _helper.cookie_guardar(Encriptacion.Encriptar(user.sIdUsuario.ToString()),
                                 Encriptacion.Encriptar(acceso.sIdAcceso.ToString()),
                                 Encriptacion.Encriptar(acceso.sPort.ToString()),
@@ -156,8 +156,11 @@ namespace accesosIp.Controllers
                             }
                             _context.Acceso.Update(acceso);
                             _context.Save();
-
-                                _helper.cookie_guardar(Encriptacion.Encriptar(user.sIdUsuario.ToString()),
+                            HttpContext.Session.Set(SessionValor.SessionKeyPersona, user.sIdUsuario.ToString());
+                            HttpContext.Session.Set(SessionValor.SessionKeyAcceso, acceso.sIdAcceso);
+                            HttpContext.Session.Set(SessionValor.SessionKeyAcceso, tuple.Item2);
+                           // HttpContext.Session.Set(SessionValor.SessionPort, tuple.Item3);
+                            _helper.cookie_guardar(Encriptacion.Encriptar(user.sIdUsuario.ToString()),
                                 Encriptacion.Encriptar(idAcceso.ToString()),
                                 Encriptacion.Encriptar(acceso.sPort.ToString()),
                                 Response);
@@ -166,7 +169,9 @@ namespace accesosIp.Controllers
                         }
                         else if(result == 1)
                         {
+                            HttpContext.Session.Set(SessionValor.SessionKeyAcceso, tuple.Item2);
                             HttpContext.Session.Set(SessionValor.SessionKeyPersona, user.sIdUsuario);
+                           // HttpContext.Session.Set(SessionValor.SessionPort, tuple.Item3);
                             _helper.cookie_guardar(Encriptacion.Encriptar(user.sIdUsuario.ToString()),
                                 Encriptacion.Encriptar(tuple.Item2.ToString()),
                                 Encriptacion.Encriptar(tuple.Item3.ToString()),
@@ -176,7 +181,9 @@ namespace accesosIp.Controllers
                         }
                         else if (result == 3 || result == 2)
                         {
+                            HttpContext.Session.Set(SessionValor.SessionKeyAcceso, tuple.Item2);
                             HttpContext.Session.Set(SessionValor.SessionKeyPersona, user.sIdUsuario);
+                          //  HttpContext.Session.Set(SessionValor.SessionPort, tuple.Item3);
                             _helper.cookie_guardar(Encriptacion.Encriptar(user.sIdUsuario.ToString()),
                                 Encriptacion.Encriptar(tuple.Item2.ToString()),
                                 Encriptacion.Encriptar(tuple.Item3.ToString()),
@@ -228,7 +235,6 @@ namespace accesosIp.Controllers
             port = _accessor.ActionContext.HttpContext.Connection.RemotePort.ToString();
 
             string idUsuario = _helper.DevolverUsuario();
-
 
                 tuple = await _repository.acceso_Actualizar(idUsuario, ip, port, navegador);
                 if (tuple.Item1 == 1)
